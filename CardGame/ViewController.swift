@@ -9,7 +9,56 @@
 import UIKit
 
 class ViewController: UIViewController {
+    lazy var game = CardGame(numberOfPairsOfCards: (cardButtons.count + 1) / 2)
+    //属性观察器->展示翻卡次数
+    var flipCount = 0 { didSet { flipCountLable.text = "Flips : \(flipCount)" } }
+    //所有卡片关联的出口，所有卡片的集合
+    @IBOutlet var cardButtons: [UIButton]!
+    //翻卡次数标签
+    @IBOutlet weak var flipCountLable: UILabel!
 
+    //所有UIBotton所关联的action
+    @IBAction func UIButton(_ sender: UIButton) {
+        flipCount += 1
+        if let cardNumber = cardButtons.index(of: sender) {
+            game.chooseCard(at: cardNumber)
+            updateViewFromModel()
+        }
+        else {
+            print("chosen card was not in the cardButtons !")
+        }
+    }
+    //从模型更新视图,如果点击没翻的卡片则翻出，注意与model中chooseCard的顺序
+    func updateViewFromModel() {
+        for index in cardButtons.indices {
+            let button = cardButtons[index]
+            let card = game.cards[index]
+            if card.isFaceUp {
+                button.setTitle(emoji(for: card), for: UIControlState.normal)
+                button.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            }
+            else {
+                button.setTitle("", for: UIControlState.normal)
+                button.backgroundColor = card.isMatched ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0) : #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
+            }
+        }
+    }
+    
+    //emoji
+    var emojiChoices = ["🦆","👻","🎃","💀","🍎","🍭","🍷","🍒"]
+    //emoji字典
+    var emoji = [Int:String]()
+    //初始化emoji字典以及返回字典中已经存在的卡片的emoji
+    func emoji(for card : Card) -> String {
+        if emoji[card.identifier] == nil , emojiChoices.count > 0 {
+            let randomIndex = Int(arc4random_uniform(UInt32(emojiChoices.count)))
+            emoji[card.identifier] = emojiChoices.remove(at: randomIndex)
+        }
+        
+        return emoji[card.identifier] ?? "?"
+    }
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

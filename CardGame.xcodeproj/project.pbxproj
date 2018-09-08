@@ -14,6 +14,8 @@
 		245512CD214389CE00A0914C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 245512CB214389CE00A0914C /* LaunchScreen.storyboard */; };
 		245512D8214389CF00A0914C /* CardGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245512D7214389CF00A0914C /* CardGameTests.swift */; };
 		245512E3214389CF00A0914C /* CardGameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245512E2214389CF00A0914C /* CardGameUITests.swift */; };
+		2493C56D2143A3D700E22901 /* CardGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2493C56C2143A3D700E22901 /* CardGame.swift */; };
+		2493C56F2143A74500E22901 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2493C56E2143A74500E22901 /* Card.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		245512DE214389CF00A0914C /* CardGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		245512E2214389CF00A0914C /* CardGameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGameUITests.swift; sourceTree = "<group>"; };
 		245512E4214389CF00A0914C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2493C56C2143A3D700E22901 /* CardGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGame.swift; sourceTree = "<group>"; };
+		2493C56E2143A74500E22901 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +101,8 @@
 		245512C1214389C000A0914C /* CardGame */ = {
 			isa = PBXGroup;
 			children = (
+				2493C56C2143A3D700E22901 /* CardGame.swift */,
+				2493C56E2143A74500E22901 /* Card.swift */,
 				245512C2214389C000A0914C /* AppDelegate.swift */,
 				245512C4214389C100A0914C /* ViewController.swift */,
 				245512C6214389C100A0914C /* Main.storyboard */,
@@ -258,6 +264,8 @@
 			files = (
 				245512C5214389C100A0914C /* ViewController.swift in Sources */,
 				245512C3214389C000A0914C /* AppDelegate.swift in Sources */,
+				2493C56D2143A3D700E22901 /* CardGame.swift in Sources */,
+				2493C56F2143A74500E22901 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
