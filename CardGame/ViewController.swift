@@ -34,14 +34,18 @@ class ViewController: UIViewController {
             let button = cardButtons[index]
             let card = game.cards[index]
             if card.isFaceUp {
-                button.setTitle(emoji(for: card), for: UIControlState.normal)
-                button.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                    button.setTitle(emoji(for: card), for: UIControlState.normal)
+                    button.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             }
             else {
                 button.setTitle("", for: UIControlState.normal)
-                button.backgroundColor = card.isMatched ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0) : #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
+                button.backgroundColor = card.isMatched ? #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1) : #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
             }
         }
+    }
+    
+    @IBAction func restartGame(_ sender: UIButton) {
+        
     }
     
     //emoji
@@ -50,11 +54,13 @@ class ViewController: UIViewController {
     var emoji = [Int:String]()
     //初始化emoji字典以及返回字典中已经存在的卡片的emoji
     func emoji(for card : Card) -> String {
+        //如果emoji字典中对应的卡片上没有emoji且emoji数组中有图片
         if emoji[card.identifier] == nil , emojiChoices.count > 0 {
+            //随机生成一个小于emoji数组大小的无符号Int数
             let randomIndex = Int(arc4random_uniform(UInt32(emojiChoices.count)))
+            //初始化对应卡片后，把对应的emoji图片从数组中去除
             emoji[card.identifier] = emojiChoices.remove(at: randomIndex)
         }
-        
         return emoji[card.identifier] ?? "?"
     }
    
