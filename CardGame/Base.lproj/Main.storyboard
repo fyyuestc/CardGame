@@ -13,7 +13,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CardGame" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="first" id="BYZ-38-t0r" customClass="ViewController" customModule="CardGame" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -63,8 +63,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="flipCountLable" destination="TmH-ZL-BZI" id="f2y-HQ-2zJ"/>
-                        <outlet property="flipcountlabel" destination="TmH-ZL-BZI" id="a6q-qs-fTu"/>
+                        <outlet property="flipCountLable" destination="TmH-ZL-BZI" id="j7n-fd-GE6"/>
                         <outletCollection property="cardButtons" destination="vc3-Gb-QYE" collectionClass="NSMutableArray" id="B5a-2b-hlZ"/>
                         <outletCollection property="cardButtons" destination="sLY-op-ybX" collectionClass="NSMutableArray" id="cv4-JL-XBZ"/>
                         <outletCollection property="cardButtons" destination="iKa-96-0Hc" collectionClass="NSMutableArray" id="zW3-vf-6JY"/>

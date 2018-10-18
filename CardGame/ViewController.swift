@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 class ViewController: UIViewController {
     lazy var game = CardGame(numberOfPairsOfCards: (cardButtons.count + 1) / 2)
     //属性观察器->展示翻卡次数
