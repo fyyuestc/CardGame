@@ -8,25 +8,30 @@
 
 import UIKit
 class ViewController: UIViewController {
+    //
     lazy var game = CardGame(numberOfPairsOfCards: (cardButtons.count + 1) / 2)
     //属性观察器->展示翻卡次数
-    var flipCount = 0 { didSet { flipCountLable.text = "Flips : \(flipCount)" } }
+    //var score = 0 { didSet { flipCountLable.text = "Scores: \(flipCountLable)" } }
     //所有卡片关联的出口，所有卡片的集合
     @IBOutlet var cardButtons: [UIButton]!
-    //翻卡次数标签
-    @IBOutlet weak var flipCountLable: UILabel!
-
+    //得分情况
+    @IBOutlet weak var userScores: UILabel!
+    //加分
+   var scores = 0 { didSet { userScores.text = "Scores : \(scores)" } }
+    
     //所有UIBotton所关联的action
     @IBAction func UIButton(_ sender: UIButton) {
-        flipCount += 1
+        //点击卡片开始
         if let cardNumber = cardButtons.index(of: sender) {
             game.chooseCard(at: cardNumber)
             updateViewFromModel()
+           
         }
         else {
             print("chosen card was not in the cardButtons !")
         }
     }
+    
     //从模型更新视图,如果点击没翻的卡片则翻出，注意与model中chooseCard的顺序
     func updateViewFromModel() {
         for index in cardButtons.indices {
@@ -40,10 +45,18 @@ class ViewController: UIViewController {
                 button.setTitle("", for: UIControlState.normal)
                 button.backgroundColor = card.isMatched ? #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1) : #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
             }
+            
         }
     }
-    
+
     @IBAction func restartGame(_ sender: UIButton) {
+        for index in cardButtons.indices {
+            game.cards[index].isMatched = false
+            game.cards[index].isFaceUp = false
+            cardButtons[index].setTitle("", for: UIControlState.normal)
+            cardButtons[index].backgroundColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
+        }
+            
         
     }
     
@@ -53,7 +66,7 @@ class ViewController: UIViewController {
     var emoji = [Int:String]()
     //初始化emoji字典以及返回字典中已经存在的卡片的emoji
     func emoji(for card : Card) -> String {
-        //如果emoji字典中对应的卡片上没有emoji且emoji数组中有图片
+        //如果emoji字典中对应的卡片上没有emoji且emoji数组中有图片,则把图片放入卡片中
         if emoji[card.identifier] == nil , emojiChoices.count > 0 {
             //随机生成一个小于emoji数组大小的无符号Int数
             let randomIndex = Int(arc4random_uniform(UInt32(emojiChoices.count)))

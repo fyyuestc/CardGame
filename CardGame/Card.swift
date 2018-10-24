@@ -15,7 +15,7 @@ struct Card
     var isMatched = false
     //每张卡片的标识，从0开始+1
     var identifier : Int
-    
+    //卡片获取标识
     static var identifierFactory = -1
     static func getUniqueIdentifier() -> Int {
         identifierFactory += 1
