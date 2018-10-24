@@ -10,14 +10,12 @@ import UIKit
 class ViewController: UIViewController {
     //
     lazy var game = CardGame(numberOfPairsOfCards: (cardButtons.count + 1) / 2)
-    //属性观察器->展示翻卡次数
-    //var score = 0 { didSet { flipCountLable.text = "Scores: \(flipCountLable)" } }
     //所有卡片关联的出口，所有卡片的集合
     @IBOutlet var cardButtons: [UIButton]!
     //得分情况
     @IBOutlet weak var userScores: UILabel!
     //加分
-   var scores = 0 { didSet { userScores.text = "Scores : \(scores)" } }
+    var scores = 0 { didSet { userScores.text = "Scores : \(scores)" } }
     
     //所有UIBotton所关联的action
     @IBAction func UIButton(_ sender: UIButton) {
@@ -25,7 +23,6 @@ class ViewController: UIViewController {
         if let cardNumber = cardButtons.index(of: sender) {
             game.chooseCard(at: cardNumber)
             updateViewFromModel()
-           
         }
         else {
             print("chosen card was not in the cardButtons !")
@@ -43,6 +40,9 @@ class ViewController: UIViewController {
             }
             else {
                 button.setTitle("", for: UIControlState.normal)
+                if(card.isMatched){
+                    scores += 1
+                }
                 button.backgroundColor = card.isMatched ? #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1) : #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
             }
             

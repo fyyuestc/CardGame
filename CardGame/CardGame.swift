@@ -24,8 +24,6 @@ class CardGame
             if let matchIndex = indexOfOneAndOnlyFaceUpCard,matchIndex != index {
                 //check if cards match
                 if cards[matchIndex].identifier == cards[index].identifier {
-                    cards[matchIndex].isFaceUp = false
-                    cards[index].isFaceUp = false
                     cards[matchIndex].isMatched = true
                     cards[index].isMatched = true
                 }
