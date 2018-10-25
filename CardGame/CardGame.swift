@@ -13,6 +13,8 @@ class CardGame
 {
     //所有卡片的数组
     var cards = [Card]()
+    //匹配成功时加分标准
+    var addPoint = false
     //记录是否有一张而且仅有一张卡朝上的卡片的索引，类型为可选类型
     var indexOfOneAndOnlyFaceUpCard : Int?
     //模型处理逻辑,3种情况->1:没有卡片面朝上，2:有两张卡朝上面的时候选了一张卡，3:一张卡朝上时选了另一张卡
@@ -26,8 +28,9 @@ class CardGame
                 if cards[matchIndex].identifier == cards[index].identifier {
                     cards[matchIndex].isMatched = true
                     cards[index].isMatched = true
+                    addPoint = true
                 }
-                //没有匹配成功则将两张图片显示
+                //无论匹配成功与否都将两张图片显示,在下一次点击时消失
                 cards[index].isFaceUp = true
                 indexOfOneAndOnlyFaceUpCard = nil
             }

@@ -35,20 +35,22 @@ class ViewController: UIViewController {
             let button = cardButtons[index]
             let card = game.cards[index]
             if card.isFaceUp {
-                    button.setTitle(emoji(for: card), for: UIControlState.normal)
-                    button.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                button.setTitle(emoji(for: card), for: UIControlState.normal)
+                button.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                //匹配成功则加分
+                if game.addPoint {
+                    scores += 2
+                    game.addPoint = false
+                }
             }
             else {
                 button.setTitle("", for: UIControlState.normal)
-                if(card.isMatched){
-                    scores += 1
-                }
                 button.backgroundColor = card.isMatched ? #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1) : #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
             }
-            
         }
     }
-
+    
+    //重新开始
     @IBAction func restartGame(_ sender: UIButton) {
         for index in cardButtons.indices {
             game.cards[index].isMatched = false
@@ -56,8 +58,7 @@ class ViewController: UIViewController {
             cardButtons[index].setTitle("", for: UIControlState.normal)
             cardButtons[index].backgroundColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
         }
-            
-        
+            scores = 0
     }
     
     //emoji
@@ -76,7 +77,6 @@ class ViewController: UIViewController {
         return emoji[card.identifier] ?? "?"
     }
    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -86,7 +86,5 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
 
