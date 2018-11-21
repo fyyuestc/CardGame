@@ -58,11 +58,23 @@ class ViewController: UIViewController {
             cardButtons[index].setTitle("", for: UIControlState.normal)
             cardButtons[index].backgroundColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
         }
-            scores = 0
+        scores = 0
+        //切换主题
+        let them = Int(arc4random_uniform(UInt32(themes.keys.count)))
+        emojiChoices = themes[them]!
+        emoji = [Int:String]()
     }
     
-    //emoji
-    var emojiChoices = ["🦆","👻","🎃","💀","🍎","🍭","🍷","🍒"]
+    //emoji主题字典(重新开始时切换)
+    var themes = [0 : ["🦆","👻","🎃","💀","🍎","🍭","🍷","🍒"],
+                  1 : ["🚗","🚕","🚙","🚌","🚑","🚓","🏎","🚎"],
+                  2 : ["⌚️","📱","💻","🖨","🖥","⌨️","💽","🗜"],
+                  3 : ["🇦🇱","🇩🇿","🇦🇫","🏳️‍🌈","🇦🇷","🇦🇪","🇦🇼","🇴🇲"],
+                  4 : ["⚽️","🏀","🏈","⚾️","🎱","🏉","🏐","🎾"],
+                  5 : ["🍏","☎️","🍐","🍊","🍋","🍌","🍉","🍇"]]
+    //emoji主题数组
+    lazy var emojiChoices = themes[0]!
+    
     //emoji字典
     var emoji = [Int:String]()
     //初始化emoji字典以及返回字典中已经存在的卡片的emoji
